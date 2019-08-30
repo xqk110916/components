@@ -1,9 +1,19 @@
 <template>
   <div id="app">
-    
+    <index></index>
   </div>
 </template>
 
-<style lang="scss">
+<script>
+import index from '@/views/index.vue'
+export default {
+  name: 'app',
+  components: {
+    index
+  }
+}
+</script>
+
+<style>
 
 </style>
