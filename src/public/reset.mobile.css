@@ -50,6 +50,7 @@ a{
 
 img{
   -webkit-touch-callout:none;/* 见 <a> */
+  vertical-align: top;
 }
 
 /* 重置列表元素 */
@@ -226,4 +227,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 } 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #cccccc;
+}
+
+.clearfix:after {
+  content: '.';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }

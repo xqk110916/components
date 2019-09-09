@@ -1,10 +1,10 @@
 const reSize = function () {
   let dom = document.documentElement
+  console.log(dom.getBoundingClientRect())
   let w = dom.getBoundingClientRect().width
-  console.log(w)
   let rem = w / 7.5
-  dom.setAttribute("font-size", rem + 'px')
-  console.log(rem)
+  document.getElementsByTagName('html')[0].style.fontSize = rem + 'px'
+  // html.setAttribute("font-size", rem + 'px')
   return rem
 }
 
