@@ -127,11 +127,6 @@
       justify-content: space-between;
       flex-wrap: wrap;
 
-      .tag-active {
-        background: #edf5ff !important;
-        color: #55a3ec !important;
-      }
-
       .tags {
         width: 2.22rem;
         height: .7rem;
@@ -143,6 +138,11 @@
         border-radius: 5px;
         margin-top: .06rem;
         margin-bottom: .06rem;
+      }
+
+      .tag-active {
+        background: #edf5ff;
+        color: #55a3ec;
       }
     }
   }
