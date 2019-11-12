@@ -1,6 +1,9 @@
 <template>
   <div>
-    <router-view></router-view>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <router-view></router-view>
+    </van-pull-refresh>
+    
   </div>
 </template>
 
@@ -9,7 +12,9 @@ import reSize from '@/public/resize.js'
 export default {
   name: 'index',
   data(){
-    return {}
+    return {
+      isLoading: false,
+    }
   },
   created() {
     this.reSize()
@@ -19,6 +24,11 @@ export default {
     reSize() {
       reSize()
     },
+    onRefresh() {
+      console.log("刷新")
+      window.location.reload(true)
+    },
+
   }
 }
 </script>

@@ -3,7 +3,6 @@ import Vue from 'vue'
 const vm = new Vue()
 
 axios.defaults.baseURL = 'https//localhost:3000';
-axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 // 添加请求拦截器

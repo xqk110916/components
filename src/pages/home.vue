@@ -1,22 +1,33 @@
 <template>
   <div class="home">
     <header>
-      <i class="el-icon-location-outline"></i>
+      <van-icon name="location" color="#fff" size=".36rem" />
+      <!-- <i class="el-icon-location-outline"></i> -->
       <span>定安名都</span>
       <i class="el-icon-caret-bottom"></i>
     </header>
-    <div class="search">
-      <router-link tag="p" class="content" to="">
-        <i class="el-icon-search"></i>
-        <span>搜索饿了吗商家或商品名称</span>
-      </router-link>
+    <van-sticky>
+      <div class="search">
+        <router-link tag="p" class="content" to="">
+          <!-- <i class="el-icon-search"></i> -->
+          <van-icon name="search" color="#999" size=".3rem" />
+          <span>搜索饿了吗商家或商品名称</span>
+        </router-link>
+      </div>
+    </van-sticky>
+    
+    <swipe></swipe>  
+    <activity-lego></activity-lego>
+
+    <div class="twoFlanksLine merchant">
+      推荐商家
     </div>
-    <carousel></carousel>
   </div>
 </template>                                                                                                                                                                                                                                                                                                                                                                                                                           
 
 <script>
-  import carousel from '@/components/swiper-item.vue'
+  import swipe from '@/components/home/swiper-item.vue'
+  import activityLego from '@/components/home/activityLego.vue'
   export default {
     name: 'home',
     data() {
@@ -28,7 +39,8 @@
 
     },
     components: {
-      carousel,
+      swipe,
+      activityLego,
     }
   }
 </script>
@@ -87,11 +99,15 @@
         color: #999;
         font-size: .373333rem;
       }
-      .el-icon-search {
-        color: #999;
-        font-size: .3rem;
+      .van-icon-search {
+        margin-right: .05rem;
       }
     }
+  }
+
+  .merchant {
+    height: .72rem;
+    margin-top: .08rem;
   }
 }
 </style>

@@ -1,46 +1,27 @@
-import axios from '@/axios'
-
-function getPro(url, data) {
-  return new Promise((reslove, reject) => {
-    axios.get(url, {
-      params: data
-    }).then(result => {
-      reslove(result)
-    })
-  })
-}
-
-function postPro(url, data) {
-  return new Promise((reslove, reject) => {
-    axios.post(url, data).then(result => {
-      reslove(result)
-    })
-  }) 
-}
-
-function putPro(url, data) {
-  return new Promise((reslove, reject) => {
-    axios.put(url, data).then(result => {
-      reslove(result)
-    })
-  })
-}
-
-function deletePro(url, data) {
-  return new Promise((reslove, reject) => {
-    axios.delete(url, {
-      data,
-    }).then(result => {
-      reslove(result)
-    })
-  })
+function cloneFunction(func) {
+  const bodyReg = /(?<={)(.|\n)+(?=})/m;
+  const paramReg = /(?<=\().+(?=\)\s+{)/;
+  const funcString = func.toString();
+  if (func.prototype) {
+      const param = paramReg.exec(funcString);
+      const body = bodyReg.exec(funcString);
+      if (body) {
+          if (param) {
+              const paramArr = param[0].split(',');
+              return new Function(...paramArr, body[0]);
+          } else {
+              return new Function(body[0]);
+          }
+      } else {
+          return null;
+      }
+  } else {
+      return eval(funcString);
+  }
 }
 
 const install = function(Vue, ops) {
-  Vue.prototype.getPro = getPro
-  Vue.prototype.postPro = postPro
-  Vue.prototype.putPro = putPro
-  Vue.prototype.deletePro = deletePro
+  Vue.prototype.clone = cloneFunction
 }
 
 export default install
