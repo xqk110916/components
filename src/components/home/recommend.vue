@@ -11,15 +11,10 @@
 
         <van-dropdown-menu class="nav-title-list">
           <van-dropdown-item title="筛选" ref="item">
-            <div class="group" v-for="(item, index) in screenGroup" :key="index">
-              <p class="group-title"> {{ item.title }} </p>
-              <div class="tag-group">
-                <div v-for="option in item.options" :class="['tags', {'tag-active': tagIsActive(option.id)}]" :key="option.id" @click="changeTagActive(option.id)"> {{ option.name }} </div>
-              </div>
-            </div>
+            <select-filter :group="screenGroup" :actives="multipleTagActive" @change:active="multipleChangeActive" multiple></select-filter>
             
             <div class="buttonBox">
-              <van-button type="default" @click="onConfirm" :class="['btn',true?'empty':'']">清空</van-button>
+              <van-button type="default" @click="emptyCheck" :class="['btn', !multipleTagActive.length?'empty':'']">清空</van-button>
               <van-button type="primary" @click="onConfirm" class="btn">确认</van-button>
             </div>
             
@@ -33,6 +28,7 @@
 </template>
 
 <script>
+  import selectFilter from '@/components/selectFilter'
   export default {
     name: 'recommend',
     data() {
@@ -49,41 +45,32 @@
           { text: '人均从高到低', value: 7 },
           { text: '通用排序', value: 8 },
         ],
-        screenGroup: [      //筛选分组数据
-          {
-            title: '上家服务(可多选)',
-            options: [
-              {id: 1, name: '选项1'},
-              {id: 2, name: '选项2'},
-              {id: 3, name: '选项3'},
-              {id: 4, name: '选项4'},
-            ]
-          }
-        ],
-        tagActive: [],      //选中的筛选条件
+        screenGroup: {
+          title: '上家服务(可多选)',
+          options: [
+            {id: 1, name: '选项1'},
+            {id: 2, name: '选项2'},
+            {id: 3, name: '选项3'},
+            {id: 4, name: '选项4'},
+          ]
+        },
+        multipleTagActive: [],      //选中的筛选条件
       }
     },
     methods: {
-      changeTagActive(id) {
-        let index = this.tagActive.indexOf(id)
-        if(index >= 0) {
-          this.tagActive.splice(index, 1)
-        } else {
-          this.tagActive.push(id)
-        }
-      },
-      tagIsActive(id) {   //判断标签是否被选中
-        let index = this.tagActive.indexOf(id)
-        if(index >= 0) {
-          return true
-        } else {
-          return false
-        }
+      multipleChangeActive(active) {
+        this.multipleTagActive = active
       },
       onConfirm() {
         this.$refs.item.toggle();
-      }
+      },
+      emptyCheck() {
+
+      },
     },
+    components: {
+      selectFilter,
+    }
   }
 </script>
 
@@ -110,42 +97,7 @@
     }
   }
 
-  .group {
-    margin-bottom: .2rem;
-
-    .group-title {
-      color: #666;
-      font-size: .24rem;
-      margin-left: .7rem;
-      margin-bottom: .15rem;
-    }
-
-    .tag-group {
-      box-sizing: border-box;
-      padding: 0 .2rem;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-
-      .tags {
-        width: 2.22rem;
-        height: .7rem;
-        background: #fafafa;
-        color: #333;
-        font-size: .26rem;
-        line-height: .7rem;
-        text-align: center;
-        border-radius: 5px;
-        margin-top: .06rem;
-        margin-bottom: .06rem;
-      }
-
-      .tag-active {
-        background: #edf5ff;
-        color: #55a3ec;
-      }
-    }
-  }
+  
   
   
 }
