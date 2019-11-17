@@ -35,5 +35,7 @@ export default {
 
 <style lang="scss">
 @import '../public/reset.mobile.css';   //引入重置样式文件
-
+img {
+  vertical-align: top;
+}
 </style>

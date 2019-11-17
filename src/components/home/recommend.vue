@@ -3,11 +3,11 @@
     <van-sticky>
       <div class="nav-title">
         <van-dropdown-menu class="nav-title-list">
-          <van-dropdown-item v-model="value1" :options="option1" />
+          <van-dropdown-item v-model="sortValue" :options="sortOptions" @change="sortChange" />
         </van-dropdown-menu>
 
-        <span class="nav-title-list">距离最近</span>
-        <span class="nav-title-list">品质联盟</span>
+        <span :class="['nav-title-list', 'nav-span', active === 1 ? 'active' : '']" @click="listChange(1)">距离最近</span>
+        <span :class="['nav-title-list', 'nav-span', active === 2 ? 'active' : '']" @click="listChange(2)">品质联盟</span>
 
         <van-dropdown-menu class="nav-title-list">
           <van-dropdown-item title="筛选" ref="item">
@@ -33,8 +33,9 @@
     name: 'recommend',
     data() {
       return {
-        value1: 0,
-        option1: [      //集合1排序数据
+        active: 0,    //为0时代表使用集合一的过滤排序, 为1代表使用 第二项, 2代表第三项(这三项不可以互存)
+        sortValue: 0,   //排序集合的值
+        sortOptions: [      //集合1排序数据
           { text: '综合排序', value: 0 },
           { text: '好评有限', value: 1 },
           { text: '销量最高', value: 2 },
@@ -65,8 +66,18 @@
         this.$refs.item.toggle();
       },
       emptyCheck() {
-
+        this.multipleTagActive = []
       },
+
+      // sort栏选中改变
+      sortChange() {
+        this.active = 0
+      },
+      // list栏选中改变
+      listChange(n) {
+        this.active = n
+        this.sortValue = 0
+      }
     },
     components: {
       selectFilter,
@@ -83,7 +94,7 @@
   margin-right: .25rem;
 
   .nav-title-list {
-    font-size: .28rem;
+    font-size: .3rem;
     color: #333;
 
     .buttonBox {
@@ -97,6 +108,13 @@
     }
   }
 
+  .nav-span {
+    margin-bottom: 2px;
+  }
+
+  .active {
+    font-weight: 700;
+  }
   
   
   

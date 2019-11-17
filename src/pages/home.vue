@@ -22,12 +22,14 @@
     <div class="twoFlanksLine merchant">
       推荐商家
     </div>
+    <recommend></recommend>
   </div>
 </template>                                                                                                                                                                                                                                                                                                                                                                                                                           
 
 <script>
-  import swipe from '@/components/home/swiper-item.vue'
-  import activityLego from '@/components/home/activityLego.vue'
+  import swipe from '@/components/home/swiper-item.vue'   //轮播组件
+  import activityLego from '@/components/home/activityLego.vue'   //会员推广LOGO
+  import recommend from '@/components/home/recommend.vue'   //过滤菜单项组件
   export default {
     name: 'home',
     data() {
@@ -41,6 +43,7 @@
     components: {
       swipe,
       activityLego,
+      recommend,
     }
   }
 </script>

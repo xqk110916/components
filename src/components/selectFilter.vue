@@ -14,28 +14,29 @@
     name: 'multipleOption',
     data(){
       return {
-        tagActive: [],
+        
       }
     },
-    computed: {
+    computed: { 
       tagActive() {
-        return 
+        return this.actives
       },
     },
     methods: {
       changeTagActive(id) {  //判断标签是否被选中
+        let active = this.tagActive
         if(this.multiple) {
-          let index = this.tagActive.indexOf(id)
+          let index = active.indexOf(id)
           if(index >= 0) {
-            this.tagActive.splice(index, 1)
-            this.$emit("change:active", this.tagActive)
+            active.splice(index, 1)
+            this.$emit("change:active", active)
           } else {
-            this.tagActive.push(id)
-            this.$emit("change:active", this.tagActive)
+            active.push(id);
+            this.$emit("change:active", active)
           }
         } else {
-          this.tagActive = [id]
-          this.$emit("change:active", this.tagActive)
+          active = [id]
+          this.$emit("change:active", active)
         }
       },
       tagIsActive(id) {   //判断标签是否被选中, 从而改变样式
@@ -46,11 +47,6 @@
           return false
         }
       },
-      emptyCkeck() {
-        console.log('===')
-        this.tagActive = []
-        this.$emit("multiple:changeactive", this.tagActive)
-      }
     },
     props: {
       group: {
