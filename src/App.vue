@@ -45,4 +45,13 @@ export default {
   margin: 0 .2rem;
   margin-left: .2rem;
 }
+.bk {
+  display: inline-block;
+  font-size: .2rem;
+  color: #fff;
+  background: rgb(240, 115, 115);
+  padding: 0 .04rem;
+  border-radius: .02rem;
+  margin-right: .1rem;
+}
 </style>
