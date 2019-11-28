@@ -27,8 +27,17 @@
         <span class="tags">其他快餐</span>
         <span class="tags">品质联盟</span>
       </div>
-      <div class="activity">
+      <div class="activity" :style="{overflow: xia ? 'hidden': 'visible'}">
+        <div class="unfold" @click="extend">
+          <span>5个活动</span>
+          <svg class="icon xia" aria-hidden="true">
+              <use :xlink:href="xia ? '#icon-xia1': '#icon-xia'"></use>
+          </svg>
+        </div>
+        
         <p> <span class="bk">折</span> 满10减5, 满20减7, 满30减8 </p>
+        <p> <span class="bk">折</span> 折扣商品五折起 </p>
+        <p> <span class="bk">折</span> 折扣商品五折起 </p>
         <p> <span class="bk">折</span> 折扣商品五折起 </p>
       </div>
     </div>
@@ -41,11 +50,12 @@
     data() {
       return {
         star: 3,
+        xia: true,
       }
     },
     methods: {
       extend() {
-
+        this.xia = !this.xia
       },
     }
   }
@@ -121,18 +131,32 @@
         display: inline-block;
         border: 1px solid rgba(180,180,180,.6);
         color: #666;
-        margin: .05rem;
+        margin: .05rem; 
       }
     }
 
     .activity {
+      height: .74rem;
       margin-top: .27rem;
       color: #666;
+      position: relative;
+
+      .unfold {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: .2rem;
+        .xia {
+          width: .2rem;
+          height: .2rem;
+        }
+      }
+      
       
       p {
-        margin-top: .1rem;
+        margin-bottom: .1rem;
       }
-      p:first-child {
+      p:last-child {
         margin-top: 0;
       }
     }

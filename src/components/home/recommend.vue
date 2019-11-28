@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-sticky>
+    <van-sticky :offset-top="size * 0.94">
       <div class="nav-title">
         <van-dropdown-menu class="nav-title-list">
           <van-dropdown-item v-model="sortValue" :options="sortOptions" @change="sortChange" />
@@ -81,6 +81,12 @@
     },
     components: {
       selectFilter,
+    },
+    props: {
+      size: {
+        type: Number,  
+        default: 0,
+      }
     }
   }
 </script>
@@ -92,6 +98,8 @@
   align-items: center;
   height: .79rem;
   margin-right: .25rem;
+  background: #fff;
+  overflow: hidden;
 
   .nav-title-list {
     font-size: .3rem;

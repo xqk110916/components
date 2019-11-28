@@ -22,7 +22,8 @@
     <div class="twoFlanksLine merchant">
       推荐商家
     </div>
-    <recommend></recommend>
+    <recommend :size="size"></recommend>
+    <shop-card></shop-card>
   </div>
 </template>                                                                                                                                                                                                                                                                                                                                                                                                                           
 
@@ -30,20 +31,24 @@
   import swipe from '@/components/home/swiper-item.vue'   //轮播组件
   import activityLego from '@/components/home/activityLego.vue'   //会员推广LOGO
   import recommend from '@/components/home/recommend.vue'   //过滤菜单项组件
+  import shopCard from '@/components/shopCard.vue'   //过滤菜单项组件
   export default {
     name: 'home',
     data() {
       return {
         search: '',
+        size: 50,  //字体大小
       }
     },
     created() {
-
+      let size = document.getElementsByTagName('html')[0].style.fontSize
+      this.size = parseInt(size)
     },
     components: {
       swipe,
       activityLego,
       recommend,
+      shopCard,
     }
   }
 </script>
@@ -51,6 +56,7 @@
 <style lang="scss" scoped>
 .home {
   height: 200vh;
+  padding-bottom: 50px;
 
   header {
     background: #409EFF;
@@ -112,5 +118,7 @@
     height: .72rem;
     margin-top: .08rem;
   }
+
+  
 }
 </style>
