@@ -2,7 +2,7 @@
   <div class="warpper">
     <!-- <recommend></recommend> -->
     <!-- <shop-card class="top"></shop-card> -->
-    <order-card></order-card>
+    <order-card  v-for="n in 3" :key="n"></order-card>
     <bottom-nav-bar></bottom-nav-bar>
   </div>
 </template>
@@ -35,6 +35,7 @@
   box-sizing: border-box;
   margin-top: 10px;
   height: 100vh;
+  background: #eee;
 
   .top {
     margin-top: 10px;
